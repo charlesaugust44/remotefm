@@ -1,0 +1,37 @@
+<!-- views/fileList.ejs -->
+<% if (parentDirectory) { %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="?path=<%= parentDirectory %>">
+            <i class="bi bi-arrow-up-left-square"></i>
+        </a>
+    </li>
+<% } %>
+<% files.forEach(file => { %>
+    
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <% if (file.isDirectory) { %>
+                <a href="?path=<%= file.path %>">
+                    <i class="bi <%= file.icon %>"></i>
+                    <%= file.name %>
+                </a>
+            <% } else { %>
+                <span>
+                    <i class="bi <%= file.icon %>"></i>
+                    <%= file.name %>
+                </span>
+            <% } %>
+            <div>
+                <% if (!file.isDirectory) { %>
+                    <button class="btn btn-info btn-sm" onclick="viewMetadata('<%= file.path %>', this)">Metadata</button>
+                <% } %>
+                <a href="/delete?path=<%= file.path %>" class="btn btn-danger btn-sm">
+                    <i class="bi bi-trash"></i>
+                </a>
+                <button class="btn btn-warning btn-sm" onclick="showRenameModal('<%= file.path %>')">
+                    <i class="bi bi-input-cursor-text"></i>
+                </button>
+                <!--button class="btn btn-secondary btn-sm" onclick="showMoveModal('<%= file.path %>')">Move</button-->
+            </div>
+        </li>
+  
+<% }); %>

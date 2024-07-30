@@ -1,0 +1,13 @@
+<div class="container container-sm">
+    <button class="btn btn-secondary mt-3" onclick="runUpdate(true)">Check Update Script</button>
+    <button class="btn btn-primary mt-3" onclick="runUpdate(false)">Run Update Script</button>
+    <ul class="list-group mt-3">
+        <%- include('fileList') %>
+    </ul>
+</div>
+
+<!-- Include modals -->
+<%- include('metadataModal') %>
+<%- include('renameModal') %>
+<%- include('moveModal') %>
+<%- include('updateModal') %>
